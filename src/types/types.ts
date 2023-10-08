@@ -13,7 +13,7 @@ export interface ICoordinates {
 export interface IInput{
   value:number,
   tableID:number,
-  rowID:number
+  rowID:number,
 }
 
 export interface ITable {

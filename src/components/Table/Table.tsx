@@ -37,6 +37,7 @@ const Table: FC<ITableProps> = ({table}) => {
 
   return (
      <div className={style.tableWrapper}>
+       <p className={'text-center bg-neutral-400 py-1.5'}>{table.id} таблица</p>
        <table className={style.table}>
          <thead>
          <tr>

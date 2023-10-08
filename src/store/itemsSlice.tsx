@@ -1,6 +1,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {ICoordinates, IInput, IRowDelete, ITable, newRow, TypeInitialState} from "../types/types.ts";
+import {ICoordinates, IInput, IRowDelete, newRow, TypeInitialState} from "../types/types.ts";
 import {idCounter} from "../components/idCreator.ts";
+import {ceilChange} from "../ceilChange.ts";
 
 
 let initialState: TypeInitialState = {
@@ -43,7 +44,6 @@ let initialState: TypeInitialState = {
 }
 
 
-
 const itemsSlice = createSlice({
   name: 'items',
   initialState,
@@ -65,28 +65,37 @@ const itemsSlice = createSlice({
       })
     },
     calculate(state) {
+
       state.tables[2].rows = []
+
       const table1: ICoordinates[] = state.tables[0].rows;
       const table2: ICoordinates[] = state.tables[1].rows;
+
       const minTableLength = Math.min(table1.length, table2.length)
+
       let table3 = state.tables[2].rows;
+
       for (let i = 0; i < minTableLength; i++) {
-        let row:ICoordinates = {
-          id:idCounter(),
-          x:0,
-          y:0
+        let row: ICoordinates = {
+          id: idCounter(),
+          x: 0,
+          y: 0
         }
-        row.x = (table1[i].x + table2[i].x) / 2
-        row.y = (table1[i].y + table2[i].y) / 2
+        row.x = +((table1[i].x + table2[i].x) / 2).toFixed(2)
+        row.y = +((table1[i].y + table2[i].y) / 2).toFixed(2)
         table3.push(row)
       }
     },
-    ceilChange(state,action:PayloadAction<IInput>){
-     const tableCurrent:ITable[] = state.tables.filter((table)=>table.id === action.payload.tableID)
-     tableCurrent[0].rows.filter(row=>row.id === action.payload.rowID)
-    }
+    ceilChangeX(state, action: PayloadAction<IInput>) {
+      const rowCurrent =   ceilChange(state,action)
+      rowCurrent[0].x = action.payload.value
+    },
+    ceilChangeY(state, action: PayloadAction<IInput>) {
+      const rowCurrent =   ceilChange(state,action)
+      rowCurrent[0].y = action.payload.value
+    },
   }
 })
 
-export const {addRow, rowDelete, calculate,ceilChange} = itemsSlice.actions
+export const {addRow, rowDelete, calculate, ceilChangeY,ceilChangeX} = itemsSlice.actions
 export default itemsSlice.reducer

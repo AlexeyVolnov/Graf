@@ -2,9 +2,7 @@ import {ChangeEvent, FC} from "react";
 import style from "./table.module.scss";
 import {ICoordinates, ITable} from "../../types/types.ts";
 import {useAppDispatch} from "../../hooks/hooks.ts";
-import {ceilChange, rowDelete} from "../../store/itemsSlice.tsx";
-import TableInput from "./TableInput.tsx";
-import {idCounter} from "../idCreator.ts";
+import {ceilChangeX, ceilChangeY, rowDelete} from "../../store/itemsSlice.tsx";
 
 
 interface ITableRowProps {
@@ -16,7 +14,6 @@ interface ITableRowProps {
 const TableRow: FC<ITableRowProps> = ({row, table}) => {
 
   const dispatch = useAppDispatch()
-  const coordinates = [row.x, row.y]
   const rowDeleteHandler = () => {
     dispatch(rowDelete({
       tableId: table.id,
@@ -24,18 +21,29 @@ const TableRow: FC<ITableRowProps> = ({row, table}) => {
     }))
 
   }
-  const inputHandler = (cord:ChangeEvent<HTMLInputElement>) => {
-       dispatch(ceilChange({
-         value:+cord.target.value,
-         tableID:table.id,
-         rowID:+row.id
-       }))
-  }
 
+  const  inputHandlerX = (cord:ChangeEvent<HTMLInputElement>)=>{
+    const rowCurrent = {
+      value: +cord.target.value,
+      tableID: table.id,
+      rowID: row.id,
+    }
+    dispatch(ceilChangeX(rowCurrent))
+
+  }
+  const  inputHandlerY = (cord:ChangeEvent<HTMLInputElement>)=>{
+    const rowCurrent = {
+      value: +cord.target.value,
+      tableID: table.id,
+      rowID: row.id,
+    }
+    dispatch(ceilChangeY(rowCurrent))
+  }
 
   return (
      <>
-       {coordinates.map(cord => <TableInput inputHandler={inputHandler} key={idCounter()} cord={cord}/>)}
+       <td><input className={style.input} onInput={inputHandlerX}   defaultValue={row.x} type="number"/></td>
+       <td><input className={style.input} onInput={inputHandlerY}  defaultValue={row.y} type="number"/></td>
        <td>
          {!table.calc && <button onClick={rowDeleteHandler} className={style.delete}>Delete</button>}
        </td>
