@@ -1,10 +1,10 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {ICoordinates, IInput, IRowDelete, newRow, TypeInitialState} from "../types/types.ts";
-import {idCounter} from "../components/idCreator.ts";
-import {ceilChange} from "../ceilChange.ts";
+import {idCounter} from "../utils/idCreator.ts";
+import {ceilChange} from "../utils/ceilChange.ts";
 
 
-let initialState: TypeInitialState = {
+const initialState: TypeInitialState = {
   tables: [{
     id: 1,
     rowsCount: 1,
@@ -49,14 +49,14 @@ const itemsSlice = createSlice({
   initialState,
   reducers: {
     addRow(state, action: PayloadAction<newRow>) {
-      state.tables.map(table => {
+      state.tables.forEach(table => {
         if (table.id === action.payload.tableId) {
           table.rows.push(action.payload.row)
         }
       })
     },
     rowDelete(state, action: PayloadAction<IRowDelete>) {
-      state.tables.map(table => {
+      state.tables.forEach(table => {
         if (table.id === action.payload.tableId) {
           if (table.rows.length > 1) {
             table.rows = table.rows.filter((item) => item.id !== action.payload.rowId)
@@ -73,10 +73,10 @@ const itemsSlice = createSlice({
 
       const minTableLength = Math.min(table1.length, table2.length)
 
-      let table3 = state.tables[2].rows;
+      const table3 = state.tables[2].rows;
 
       for (let i = 0; i < minTableLength; i++) {
-        let row: ICoordinates = {
+        const row: ICoordinates = {
           id: idCounter(),
           x: 0,
           y: 0
@@ -87,15 +87,15 @@ const itemsSlice = createSlice({
       }
     },
     ceilChangeX(state, action: PayloadAction<IInput>) {
-      const rowCurrent =   ceilChange(state,action)
+      const rowCurrent = ceilChange(state, action)
       rowCurrent[0].x = action.payload.value
     },
     ceilChangeY(state, action: PayloadAction<IInput>) {
-      const rowCurrent =   ceilChange(state,action)
+      const rowCurrent = ceilChange(state, action)
       rowCurrent[0].y = action.payload.value
     },
   }
 })
 
-export const {addRow, rowDelete, calculate, ceilChangeY,ceilChangeX} = itemsSlice.actions
+export const {addRow, rowDelete, calculate, ceilChangeY, ceilChangeX} = itemsSlice.actions
 export default itemsSlice.reducer

@@ -3,7 +3,7 @@ import './App.css'
 
 
 import TableList from "./components/Table/TableList.tsx";
-import DiagrammList from "./components/diagramm/DiagrammList.tsx";
+import DiagrammList from "./components/Diagramm/DiagrammList.tsx";
 
 
 

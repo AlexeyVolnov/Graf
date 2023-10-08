@@ -3,12 +3,11 @@ import {useAppSelector} from "../../hooks/hooks.ts";
 import Diagramm from "./Diagramm.tsx";
 
 
-interface IDiagrammListProps {
-
-}
 
 
-const DiagrammList: FC<IDiagrammListProps> = ({}) => {
+
+
+const DiagrammList: FC = () => {
   const diagrams = useAppSelector(state => state.itemsSlice.tables)
   return (
      <>

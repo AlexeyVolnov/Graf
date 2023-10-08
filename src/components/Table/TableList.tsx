@@ -3,12 +3,10 @@ import Table from "./Table.tsx";
 import {useAppSelector} from "../../hooks/hooks.ts";
 
 
-interface ITableListProps {
-
-}
 
 
-const TableList: FC<ITableListProps> = ({}) => {
+
+const TableList: FC = () => {
   const tables = useAppSelector(state=>state.itemsSlice.tables)
   return (
      <>

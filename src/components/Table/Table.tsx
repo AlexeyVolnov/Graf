@@ -1,10 +1,10 @@
 import {FC} from "react";
 import {ICoordinates, ITable} from "../../types/types.ts";
-import style from './table.module.scss'
+import style from '../../style/table.module.scss'
 import TableRow from "./TableRow.tsx";
 import {useAppDispatch} from "../../hooks/hooks.ts";
 import {addRow, calculate} from "../../store/itemsSlice.tsx";
-import {idCounter} from "../idCreator.ts";
+import {idCounter} from "../../utils/idCreator.ts";
 
 interface ITableProps {
   table: ITable

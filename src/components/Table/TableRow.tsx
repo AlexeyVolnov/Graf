@@ -1,5 +1,5 @@
 import {ChangeEvent, FC} from "react";
-import style from "./table.module.scss";
+import style from "../../style/table.module.scss";
 import {ICoordinates, ITable} from "../../types/types.ts";
 import {useAppDispatch} from "../../hooks/hooks.ts";
 import {ceilChangeX, ceilChangeY, rowDelete} from "../../store/itemsSlice.tsx";
