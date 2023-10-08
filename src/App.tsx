@@ -11,7 +11,7 @@ function App() {
 
 
   return (
-     <div className={'flex flex-col px-10 py-10'}>
+     <div className={'grid grid-cols-3 bg-neutral-50 items-center justify-center gap-10 px-5 py-5 grid-rows-2'}>
        <TableList/>
        <DiagrammList/>
      </div>

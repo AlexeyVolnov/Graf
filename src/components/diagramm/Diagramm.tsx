@@ -80,7 +80,7 @@ const Diagramm: FC<IDiagrammProps> = ({diagramData}) => {
     ],
   };
   return (
-     <div className={'max-w-[600px] bg-neutral-200 w-full h-[600px]'}>
+     <div className={'bg-neutral-200 w-full'}>
        <Line options={options} data={data}/>;
      </div>
   )

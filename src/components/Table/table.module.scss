@@ -1,24 +1,27 @@
-.tableWrapper{
+.tableWrapper {
   background: rgba(0, 0, 0, 0.06);
   padding: 50px;
+  max-width: 600px;
+}
+
+.table {
 
 }
 
-.table{
-
-}
-
-.input{
+.input {
   border: 1px solid rgba(128, 128, 128, 0.4);
+  min-width: 30px;
+  width: 100%;
 }
-.delete{
+
+.delete {
   border-radius: 4px;
   background-color: rgba(95, 158, 160, 0.62);
   padding: 1px 15px;
   margin-left: 5px;
 }
 
-.add{
+.add {
   border-radius: 4px;
   background-color: rgba(95, 158, 160, 0.62);
   padding: 1px 15px;
