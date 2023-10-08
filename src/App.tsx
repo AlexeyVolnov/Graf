@@ -1,6 +1,8 @@
 import './App.css'
-import TableList from "./components/tables/TableList.tsx";
+
 import GrafList from "./components/GrafList.tsx";
+
+import TableList from "./components/Table/TableList.tsx";
 
 
 

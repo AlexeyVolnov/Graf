@@ -11,8 +11,6 @@ const GrafList: FC<IGrafListProps> = ({}) => {
   return (
      <div className={'grid grid-cols-3'}>
        <Diagramm/>
-       <Diagramm/>
-       <Diagramm/>
      </div>
   )
 }
