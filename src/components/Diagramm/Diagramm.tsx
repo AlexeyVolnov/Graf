@@ -70,13 +70,7 @@ const Diagramm: FC<IDiagrammProps> = ({diagramData}) => {
         data: xCoordinate,
         borderColor: 'rgb(255, 99, 132)',
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      },
-      {
-        label: 'y',
-        data: yCoordinates,
-        borderColor: 'rgb(53, 162, 235)',
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
-      },
+      }
     ],
   };
   return (
